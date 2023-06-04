@@ -1,19 +1,36 @@
 //basic operations functions
 
 function add(a, b){
-    return a + b;
+    return fixDecimal(a + b);
 }
 
 function subtract(a, b){
-    return a - b;
+    return fixDecimal(a - b);
 }
 
 function multiply(a, b){
-    return a * b;
+    return fixDecimal(a * b);
 }
 
 function divide(a, b){
-    return a / b;
+    return fixDecimal(a/b);
+}
+
+//function that takes number and fixes it to 5 numbers if it's decimal
+function fixDecimal(number){
+
+    //if it's integer just return it
+    if(Number.isInteger(number)) return number;
+
+    //convert number to string with 5 digits after dot
+    numberString=number.toFixed(5).toString();
+
+    //if stumbling across non zero number return value, else remove number
+    for(let i=numberString.length-1; numberString[i]!=="."; i--)
+    {
+        if(numberString[i]!=='0') return numberString;
+        numberString=numberString.slice(0, -1);
+    }
 }
 
 //calls needed operation function
