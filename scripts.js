@@ -31,6 +31,7 @@ let secondNumber="";
 let operator = "";
 let result="";
 let currentNumber = "";
+let secondPartOfCalculation = false;
 const calculatorButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
 const equalButton = document.querySelector("#equal-button");
@@ -49,9 +50,24 @@ calculatorButtons.forEach((calcButton) => {
 //operator buttons event listener
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener('click', () => {
-        firstNumber=currentNumber;
-        currentNumber="";
-        operator=operatorButton.value;
+
+        if(!secondPartOfCalculation)
+        {
+            firstNumber=currentNumber;
+            currentNumber="";
+            operator=operatorButton.value;
+            secondPartOfCalculation = true;
+        }
+        else{
+            secondNumber=currentNumber;
+            result=operate(+firstNumber, +secondNumber, operator);
+            display.textContent = result;
+            operator=operatorButton.value;
+            currentNumber="";
+            firstNumber=result.toString();
+        }
+
+
     });
 });
 
@@ -64,6 +80,7 @@ equalButton.addEventListener('click', () => {
     firstNumber="";
     secondNumber="";
     operator="";
+    secondPartOfCalculation = false;
 });
 
 //event listener for "clear" button
@@ -73,6 +90,7 @@ clearButton.addEventListener('click', () => {
     secondNumber="";
     operator="";
     display.textContent = "";
+    secondPartOfCalculation = false;
 });
 
 //event listener for "delete" button
