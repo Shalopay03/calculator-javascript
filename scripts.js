@@ -26,9 +26,16 @@ function operate(firstNumber, secondNumber, operator){
 }
 
 //basic variables
-let firstNumber=10;
-let secondNumber=5;
-let operator = '+';
+let firstNumber="";
+let secondNumber="";
+let operator = "";
+const calculatorButtons = document.querySelectorAll(".number-button");
+const display = document.querySelector("#display");
 
-//test
-console.log(operate(firstNumber, secondNumber, operator));
+//number buttons event listener
+calculatorButtons.forEach((calcButton) => {
+    calcButton.addEventListener('click', () => {
+        firstNumber+=calcButton.value;
+        display.textContent = firstNumber;
+    });
+});
