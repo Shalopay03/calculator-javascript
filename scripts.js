@@ -59,6 +59,13 @@ const deleteButton = document.querySelector("#delete");
 //number buttons event listener
 calculatorButtons.forEach((calcButton) => {
     calcButton.addEventListener('click', () => {
+
+        //preventing decimal "." from appearing several times in one number
+        if(currentNumber.indexOf(".") > -1 && calcButton.value===".")
+        {
+             return;
+        }
+
         currentNumber+=calcButton.value;
         display.textContent = currentNumber;
     });
