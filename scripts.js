@@ -35,6 +35,8 @@ const calculatorButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operator-button");
 const equalButton = document.querySelector("#equal-button");
 const display = document.querySelector("#display");
+const clearButton = document.querySelector("#clear");
+const deleteButton = document.querySelector("#delete");
 
 //number buttons event listener
 calculatorButtons.forEach((calcButton) => {
@@ -53,6 +55,7 @@ operatorButtons.forEach((operatorButton) => {
     });
 });
 
+//event listener for "=" button
 equalButton.addEventListener('click', () => {
     secondNumber=currentNumber;
     result=operate(+firstNumber, +secondNumber, operator);
@@ -63,7 +66,17 @@ equalButton.addEventListener('click', () => {
     operator="";
 });
 
+//event listener for "clear" button
+clearButton.addEventListener('click', () => {
+    currentNumber="";
+    firstNumber="";
+    secondNumber="";
+    operator="";
+    display.textContent = "";
+});
 
-
-
-
+//event listener for "delete" button
+deleteButton.addEventListener('click', () => {
+    currentNumber=currentNumber.slice(0, -1);
+    display.textContent=currentNumber;
+});
