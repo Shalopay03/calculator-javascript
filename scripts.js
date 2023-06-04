@@ -124,3 +124,45 @@ deleteButton.addEventListener('click', () => {
     currentNumber=currentNumber.slice(0, -1);
     display.textContent=currentNumber;
 });
+
+//keyboard support
+document.addEventListener("keydown",  function (event){
+    if(event.key >= '0' && event.key <= '9' || event.key === ".")
+    {
+        if(currentNumber.indexOf(".") > -1 && event.key===".")
+        {
+             return;
+        }
+        currentNumber+=event.key;
+        display.textContent = currentNumber;
+    }
+    else if(event.key==="+" || event.key==="-" || event.key==="*" ||
+     event.key==="/")
+    {
+        if(!secondPartOfCalculation)
+        {
+            firstNumber=currentNumber;
+            currentNumber="";
+            operator=event.key;
+            secondPartOfCalculation = true;
+        }
+        else{
+            secondNumber=currentNumber;
+            result=operate(+firstNumber, +secondNumber, operator);
+            display.textContent = result;
+            operator=event.key;
+            currentNumber="";
+            firstNumber=result.toString();
+        }
+    }
+    else if(event.key==="="){
+        secondNumber=currentNumber;
+        result=operate(+firstNumber, +secondNumber, operator);
+        display.textContent = result;
+        currentNumber=result.toString();
+        firstNumber="";
+        secondNumber="";
+        operator="";
+        secondPartOfCalculation = false;
+    }
+})
