@@ -35,10 +35,12 @@ function fixDecimal(number){
 
 //calls needed operation function
 function operate(firstNumber, secondNumber, operator){
-    if(operator==="+") return add(firstNumber, secondNumber,);
-    if(operator==="-") return subtract(firstNumber, secondNumber,);
-    if(operator==="*") return multiply(firstNumber, secondNumber,);
-    if(operator==="/") return divide(firstNumber, secondNumber,);
+    if(operator==="+") return add(firstNumber, secondNumber);
+    if(operator==="-") return subtract(firstNumber, secondNumber);
+    if(operator==="*") return multiply(firstNumber, secondNumber);
+    //preventing dividing by 0
+    if(operator==="/" && secondNumber===0) return "ERROR";
+    if(operator==="/") return divide(firstNumber, secondNumber);
     return "ERROR";
 }
 
