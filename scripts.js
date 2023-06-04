@@ -57,7 +57,8 @@ equalButton.addEventListener('click', () => {
     secondNumber=currentNumber;
     result=operate(+firstNumber, +secondNumber, operator);
     display.textContent = result;
-    firstNumber=result;
+    currentNumber=result.toString();
+    firstNumber="";
     secondNumber="";
     operator="";
 });

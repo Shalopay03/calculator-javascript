@@ -46,7 +46,8 @@ header{
     font-size: 48px;
     text-align: right;
     overflow: hidden;
-    direction: rtl;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #delete-buttons{
